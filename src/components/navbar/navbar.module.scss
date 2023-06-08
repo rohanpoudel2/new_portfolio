@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  border-bottom: 1px solid #bbb;
+
+  .logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .links {
+    flex: 1;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+
+    .link {
+      cursor: pointer;
+    }
+  }
+
+  .chat {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
