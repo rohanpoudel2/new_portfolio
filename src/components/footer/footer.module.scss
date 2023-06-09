@@ -1,0 +1,25 @@
+.footer {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-top: 1px solid #bbb;
+  justify-content: space-between;
+
+  .footer_text {
+    font-weight: bold;
+  }
+
+  .social_links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+
+    .social_link {
+      .img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}

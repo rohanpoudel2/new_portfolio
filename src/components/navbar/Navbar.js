@@ -18,10 +18,7 @@ const Navbar = () => {
           Home
         </li>
         <li className={styles.link}>
-          Works
-        </li>
-        <li className={styles.link}>
-          Projects
+          Projects <i className="fa-solid fa-angle-down"></i>
         </li>
         <li className={styles.link}>
           Articles
