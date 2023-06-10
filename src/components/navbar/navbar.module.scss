@@ -1,13 +1,14 @@
 @import "../../styles/colors.scss";
 
 .navbar {
+  position: sticky;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   border-bottom: 1px solid #bbb;
   margin-bottom: 50px;
-  position: relative;
   z-index: 50;
 
   &::before {

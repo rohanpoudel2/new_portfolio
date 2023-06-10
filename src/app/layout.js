@@ -1,9 +1,12 @@
 import Navbar from '@/components/navbar/Navbar'
 import './globals.scss'
-import { Inter } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import Footer from '@/components/footer/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   title: 'Rohan Poudel',
@@ -16,7 +19,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <div className="container">
           <Navbar />
           {children}
