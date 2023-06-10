@@ -24,7 +24,7 @@ const Navbar = () => {
         </Link>
         <Link href="/projects">
           <li className={styles.link}>
-            Projects <i className="fa-solid fa-angle-down"></i>
+            Projects
           </li>
         </Link>
         <Link href="/articles">

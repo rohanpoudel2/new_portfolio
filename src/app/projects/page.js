@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import HeroImage from "@/../public/images/projects.jpeg";
+import Project from "@/components/project/Project";
 
 const Projects = () => {
   return (
@@ -19,6 +20,16 @@ const Projects = () => {
             (10)
           </span>
         </div>
+      </div>
+      <div className={styles.projects}>
+        <Project />
+        <Project />
+        <Project />
+        <Project />
+        <Project />
+      </div>
+      <div className={styles.endtext}>
+        This is not the end. Great things are in the making. 🚀 - Rohan Poudel
       </div>
     </div>
   )
