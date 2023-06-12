@@ -11,6 +11,20 @@ async function getArticles() {
   return res.json();
 }
 
+export const metadata = {
+  title: "Rohan Poudel - Articles",
+  description: "Read all the articles published by Rohan Poudel. I am to publish one every two week.",
+  alternates: {
+    canonical: "/articles"
+  },
+  openGraph: {
+    title: "Rohan Poudel - Articles",
+    description: "Read all the articles published by Rohan Poudel. I am to publish one every two week.",
+    url: `${process.env.SITE_URL}/articles`,
+    type: "website",
+  }
+}
+
 const Articles = async () => {
   const articles = await getArticles();
 

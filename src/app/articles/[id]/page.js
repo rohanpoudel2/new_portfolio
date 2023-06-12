@@ -13,6 +13,39 @@ async function getData(id) {
   return res.json();
 }
 
+export async function generateMetadata({ params }) {
+  const id = params.id;
+
+  const res = await fetch(`${process.env.SITE_URL}/api/articles/${id}`, { next: { revalidate: 10 } }).then((res) => res.json());
+
+  const pattern = /<p>(.*?)<\/p>/;
+
+  const match = res?.excerpt.rendered.match(pattern);
+
+  if (match && match.length > 1) {
+    let extractedText = match[1];
+    if (extractedText.length > 150) {
+      extractedText = extractedText.substring(0, 150);
+    }
+
+    return {
+      title: res?.title.rendered,
+      description: extractedText,
+      alternates: {
+        canonical: `/articles/${res?.id}`
+      },
+      openGraph: {
+        title: res?.title.rendered,
+        description: extractedText,
+        url: `${process.env.SITE_URL}/articles`,
+        type: "website",
+        images: [res?.acf.article_image.sizes.medium_large]
+      }
+    }
+
+  }
+}
+
 const Article = async ({ params }) => {
   const { id } = params;
   const data = await getData(id);

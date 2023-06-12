@@ -22,6 +22,20 @@ async function getProjectsData() {
   return res.json();
 }
 
+export const metadata = {
+  title: "Rohan Poudel - Projects",
+  description: "Some of the projects that I had built along the journey. Look around for updates, I am constantly creating new stuff.",
+  alternates: {
+    canonical: "/projects"
+  },
+  openGraph: {
+    title: "Rohan Poudel - Projects",
+    description: "Some of the projects that I had built along the journey. Look around for updates, I am constantly creating new stuff.",
+    url: `${process.env.SITE_URL}/projects`,
+    type: "website",
+  }
+}
+
 const Projects = async () => {
 
   const data = await getPageData();
@@ -29,6 +43,7 @@ const Projects = async () => {
 
   return (
     <div className={styles.project}>
+      <h1 style={{ display: "none" }}>Rohan Poudel Projects</h1>
       <div className={styles.hero}>
         <Image
           src={data[0]?.acf.hero_image}

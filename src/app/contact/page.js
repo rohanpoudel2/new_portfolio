@@ -11,6 +11,12 @@ async function getData() {
   return res.json();
 }
 
+export const metadata = {
+  alternates: {
+    canonical: '/contact',
+  }
+}
+
 const Contact = async () => {
 
   const data = await getData();
