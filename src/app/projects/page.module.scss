@@ -1,9 +1,15 @@
+@import "../../styles/mixins/responsive.scss";
+
 .project {
   min-height: calc(100vh - 150px);
 
   .hero {
     position: relative;
     margin-bottom: 50px;
+
+    @include mobile {
+      margin-bottom: 20px;
+    }
 
     .image {
       width: 100%;
@@ -28,6 +34,10 @@
       align-items: center;
       justify-content: space-between;
       padding: 20px;
+
+      @include mobile {
+        width: 100%;
+      }
     }
   }
 

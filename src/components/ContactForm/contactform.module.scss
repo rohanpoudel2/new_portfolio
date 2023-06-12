@@ -1,0 +1,63 @@
+@import "../../styles/mixins/responsive.scss";
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  margin-top: 30px;
+
+  .formElement {
+    display: flex;
+    flex-direction: column;
+
+    @include mobile {
+      width: 100%;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .input {
+      width: 378px;
+      padding: 15px 10px;
+      background-color: #FBFBFB;
+      border: none;
+      outline-color: #262626;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    .textarea {
+      width: 775px;
+      padding: 10px;
+      background-color: #FBFBFB;
+      border: none;
+      outline-color: #262626;
+
+      @include mobile {
+        width: 100%;
+      }
+    }
+  }
+
+  .button {
+    padding: 10px;
+    width: 200px;
+    cursor: pointer;
+    background-color: #262626;
+    color: white;
+    border: none;
+
+    @include mobile {
+      padding: 5px;
+      width: 100px;
+      font-size: 14px;
+    }
+  }
+}

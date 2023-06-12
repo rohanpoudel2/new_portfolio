@@ -1,3 +1,5 @@
+@import "../../styles/mixins/responsive.scss";
+
 .article {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,10 @@
   height: 250px;
   border-radius: 5px;
   cursor: pointer;
+
+  @include mobile {
+    width: 300px;
+  }
 
   .image {
     width: 100%;

@@ -2,7 +2,8 @@ import Image from "next/image"
 import styles from "./sidebar.module.scss"
 import RohanPoudel from "@/../public/images/rohanpoudel.jpg"
 
-const Sidebar = () => {
+const Sidebar = ({ author }) => {
+
   return (
     <div className={styles.sidebar}>
       <div className={styles.authors}>
@@ -11,42 +12,47 @@ const Sidebar = () => {
         </span>
         <div className={styles.author}>
           <Image
-            src={RohanPoudel}
+            src={author[0]?.avatar_urls["96"]}
+            width={100}
+            height={100}
             alt="AuthorImage"
             className={styles.authorImage}
           />
           <div className={styles.authorDetails}>
             <span className={styles.authorName}>
-              Rohan Poudel
+              {author[0]?.name}
             </span>
             <div className={styles.authorLocation}>
               <i className="fa-solid fa-location-dot"></i>
-              Kathmandu
+              {author[0]?.description}
             </div>
           </div>
         </div>
       </div>
-      <div className={styles.contributors}>
-        <span className={styles.title}>
-          Contributors
-        </span>
-        <div className={styles.author}>
-          <Image
-            src={RohanPoudel}
-            alt="AuthorImage"
-            className={styles.authorImage}
-          />
-          <div className={styles.authorDetails}>
-            <span className={styles.authorName}>
-              Rohan Poudel
-            </span>
-            <div className={styles.authorLocation}>
-              <i className="fa-solid fa-location-dot"></i>
-              Kathmandu
+      {
+        author?.length > 1 &&
+        <div className={styles.contributors}>
+          <span className={styles.title}>
+            Contributors
+          </span>
+          <div className={styles.author}>
+            <Image
+              src={RohanPoudel}
+              alt="AuthorImage"
+              className={styles.authorImage}
+            />
+            <div className={styles.authorDetails}>
+              <span className={styles.authorName}>
+                Rohan Poudel
+              </span>
+              <div className={styles.authorLocation}>
+                <i className="fa-solid fa-location-dot"></i>
+                Kathmandu
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      }
       <div className={styles.newsletter}>
         <span className={styles.title}>
           Subscribe to my newsletter
@@ -56,7 +62,7 @@ const Sidebar = () => {
           <button className={styles.button}>Subscribe</button>
         </form>
       </div>
-    </div>
+    </div >
   )
 }
 

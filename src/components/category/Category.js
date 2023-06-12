@@ -1,10 +1,10 @@
 import styles from "./category.module.scss";
 
-const Category = () => {
+const Category = ({ data }) => {
   return (
     <div className={styles.category}>
-      <span classname="">
-        NFT
+      <span>
+        {data.name}
       </span>
     </div >
   )

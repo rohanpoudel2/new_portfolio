@@ -1,15 +1,40 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
-import HeroImage from "@/../public/images/projects.jpeg";
 import Project from "@/components/project/Project";
 
-const Projects = () => {
+async function getPageData() {
+  const res = await fetch(`${process.env.SITE_URL}/api/page/projects`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch Projects Page Data");
+  }
+
+  return res.json();
+}
+
+async function getProjectsData() {
+  const res = await fetch(`${process.env.SITE_URL}/api/projects`, { next: { revalidate: 10 } });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch Projects Page Data");
+  }
+
+  return res.json();
+}
+
+const Projects = async () => {
+
+  const data = await getPageData();
+  const projects = await getProjectsData();
+
   return (
     <div className={styles.project}>
       <div className={styles.hero}>
         <Image
-          src={HeroImage}
+          src={data[0]?.acf.hero_image}
           alt="Hero Image"
+          width={1920}
+          height={1080}
           className={styles.image}
         />
         <div className={styles.projectNumberBox}>
@@ -17,19 +42,19 @@ const Projects = () => {
             Projects
           </span>
           <span className={styles.projectNumber}>
-            (10)
+            ({projects?.length})
           </span>
         </div>
       </div>
       <div className={styles.projects}>
-        <Project />
-        <Project />
-        <Project />
-        <Project />
-        <Project />
+        {
+          projects?.map((project, index) => (
+            <Project data={project} key={index} />
+          ))
+        }
       </div>
       <div className={styles.endtext}>
-        This is not the end. Great things are in the making. 🚀 - Rohan Poudel
+        {data[0]?.acf.end_text}
       </div>
     </div>
   )

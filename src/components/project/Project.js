@@ -1,52 +1,50 @@
 import Image from "next/image";
 import styles from "./project.module.scss";
-import ProjectImage from "@/../public/images/poudel-motors.png"
+import Link from "next/link";
 
-const Project = () => {
+const Project = ({ data }) => {
   return (
     <div className={styles.project}>
       <div className={styles.left}>
         <h2 className={styles.project_name}>
-          Poudel Motors
+          {data?.acf.project_name}
         </h2>
         <div className={styles.project_type}>
           <span>Type</span>
-          <span>Website</span>
+          <span>{data?.acf.project_type}</span>
         </div>
         <div className={styles.project_desc}>
           <span className={styles.label}>
             Description
           </span>
-          <p className={styles.desc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum vel dolore iusto laudantium, quidem debitis adipisci quam. Eligendi odio nisi placeat, pariatur vitae facilis rerum distinctio. Impedit consequuntur officiis quod.
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data?.acf.project_description }} className={styles.desc} />
         </div>
         <div className={styles.technologies}>
-          <span className={styles.technology}>
-            HTML
-          </span>
-          <span className={styles.technology}>
-            CSS
-          </span>
-          <span className={styles.technology}>
-            JS
-          </span>
+          {
+            data?.acf.technologies.map((technology, index) => (
+              <span className={styles.technology} key={index}>
+                {technology.name}
+              </span>
+            ))
+          }
         </div>
       </div>
       <div className={styles.right}>
         <Image
-          src={ProjectImage}
+          width={1920}
+          height={1080}
+          src={data?.acf.project_image}
           alt="Poudel Motors"
           className={styles.image}
         />
-        <div className={styles.link}>
+        <Link href={data?.acf.project_link} className={styles.link} target="__blank">
           <div className={styles.icon}>
-            ↗
+            <i className='fa-solid fa-arrow-trend-up'></i>
           </div>
           <div className={styles.text}>
             View Project
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   )

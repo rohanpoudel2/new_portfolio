@@ -1,10 +1,16 @@
+@import "../../styles/mixins/responsive.scss";
+
 .sidebar {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   position: sticky;
-  top: 50px;
+  top: 110px;
+
+  @include mobile {
+    width: 100%;
+  }
 
   .authorImage {
     width: 50px;
@@ -12,11 +18,20 @@
     border-radius: 50%;
     object-position: top;
     object-fit: cover;
+
+    @include mobile {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   .authors {
     border-top: 1px solid #333;
     padding-top: 20px;
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   .author {
@@ -25,6 +40,8 @@
     justify-content: space-between;
     margin-top: 20px;
     gap: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
 
     .authorDetails {
       display: flex;
@@ -35,6 +52,10 @@
       .authorName {
         font-size: 14px;
         font-weight: bold;
+
+        @include mobile {
+          font-size: 20px;
+        }
       }
 
       .authorLocation {
@@ -58,6 +79,10 @@
   }
 
   .newsletter {
+    @include mobile {
+      width: 100%;
+    }
+
     .form {
       display: flex;
       flex-direction: column;
@@ -65,8 +90,16 @@
       gap: 10px;
       margin-top: 20px;
 
+      @include mobile {
+        width: 100%;
+      }
+
       .input {
         padding: 10px;
+
+        @include mobile {
+          width: 100%;
+        }
       }
 
       .button {
@@ -77,6 +110,11 @@
         color: white;
         border: none;
         cursor: pointer;
+
+        @include mobile {
+          padding: 10px;
+          font-size: 14px;
+        }
       }
 
     }

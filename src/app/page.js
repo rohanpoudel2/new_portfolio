@@ -1,22 +1,39 @@
 import Image from "next/image"
 import styles from "./page.module.scss"
-import RohanPoudel from "@/../public/images/rohanpoudel.webp"
 import Newsletter from "@/components/newsletter/Newsletter"
+import Link from "next/link"
 
-const Home = () => {
+async function getData() {
+  const res = await fetch(`${process.env.SITE_URL}/api/page/home`, { next: { revalidate: 10 } });
+  if (!res.ok) {
+    throw new Error("Failed to fetch home data");
+  }
+  return res.json();
+}
+
+const Home = async () => {
+
+  const data = await getData();
+
   return (
     <div className={styles.Home}>
       <div className={styles.left}>
         <div className={styles.top}>
           <h1 className={styles.title}>
-            नमस्ते! I Am <br /> Rohan Poudel
+            {data[0]?.acf.greeting}
           </h1>
-          <p className={styles.desc}>
-            I am a driven individual, continuously seeking new knowledge. I recently graduated with a Bachelor's (Hons) in Computing, gaining valuable experience through coursework and diverse projects. Proficient in languages such as JavaScript, C#, PHP, and Java, as well as frameworks like NextJS and Laravel, I excel both individually and as part of a team, paying great attention to detail. My portfolio showcases my work, highlighting my qualifications and strengths. I am eager to contribute my skills to a forward-thinking team and would welcome the opportunity to discuss how I can be a valuable addition.
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: data[0]?.acf.description }} className={styles.desc} />
           <div className={styles.buttons}>
-            <button className={styles.button}>Hire Me</button>
-            <button className={styles.button}>Projects ↗</button>
+            <button className={styles.button}>
+              <Link href="mailto:nsrapoudel@gmail.com">
+                Hire Me
+              </Link>
+            </button>
+            <button className={styles.button}>
+              <Link href="/projects">
+                Projects <i className='fa-solid fa-arrow-trend-up'></i>
+              </Link>
+            </button>
           </div>
         </div>
         <div className={styles.bottom}>
@@ -24,29 +41,33 @@ const Home = () => {
             <h2 className={styles.subTitle}>
               Articles
             </h2>
-            <button className={styles.button}>
-              Read More
-            </button>
+            <Link href="/articles">
+              <button className={styles.button}>
+                Read More
+              </button>
+            </Link>
           </div>
           <div className={styles.bottomRight}>
             <div className={styles.articles}>
-              <div className={styles.article}>
-                <span className={styles.articleTitle}>This is a demo article</span>
-              </div>
-              <div className={styles.article}>
-                <span className={styles.articleTitle}>This is a demo article</span>
-              </div>
-              <div className={styles.article}>
-                <span className={styles.articleTitle}>This is a demo article</span>
-              </div>
+              {
+                data[0]?.acf.featured_article.map((data) => (
+                  <div className={styles.article} key={data.featured.ID}>
+                    <Link href={`/articles/${data.featured.ID}`}>
+                      <span className={styles.articleTitle}>{data.featured.post_title}</span>
+                    </Link>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
       </div>
       <div className={styles.right}>
         <Image
-          src={RohanPoudel}
-          alt="Rohan Poudel"
+          src={data[0]?.acf.rohan_image.url}
+          alt={data[0]?.acf.rohan_image.alt}
+          width={1000}
+          height={1000}
           className={styles.rohanImage}
         />
         <Newsletter />

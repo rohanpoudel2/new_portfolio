@@ -1,4 +1,5 @@
 @import "../../styles/colors.scss";
+@import "../../styles/mixins/responsive.scss";
 
 .navbar {
   position: sticky;
@@ -37,6 +38,10 @@
     align-items: center;
     justify-content: center;
 
+    @include mobile {
+      display: none;
+    }
+
     .link {
       cursor: pointer;
       display: flex;
@@ -49,10 +54,18 @@
     }
   }
 
+  .menuClose {
+    display: none;
+  }
+
   .chat {
     flex: 1;
     display: flex;
     justify-content: flex-end;
+
+    @include mobile {
+      display: none;
+    }
 
     .button {
       width: 100px;
@@ -62,6 +75,62 @@
       border-radius: 5px;
       background-color: transparent;
       cursor: pointer;
+    }
+  }
+
+  .menuOpen {
+    font-size: 25px;
+    display: none;
+
+    @include mobile {
+      display: block;
+    }
+  }
+
+  .open {
+    display: flex;
+  }
+
+  .close {
+    display: none;
+  }
+
+  .mobile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20px;
+    right: 0px;
+    width: 65vw;
+    height: 100vh;
+    border-radius: 0px 0px 5px 5px;
+    background: rgba(255, 255, 255, 0.534);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.534);
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      font-size: 22px;
+      padding: 0px;
+      margin-top: 100px;
+      gap: 50px;
+    }
+
+    .chat {
+      display: block;
+      margin-top: 50px;
+    }
+
+    .menuClose {
+      display: block;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 25px;
+      z-index: 1;
     }
   }
 }

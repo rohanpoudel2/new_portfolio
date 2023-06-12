@@ -1,10 +1,16 @@
 @import "../styles/colors.scss";
+@import "../styles/mixins/responsive.scss";
 
 .Home {
   min-height: calc(100vh - 150px);
   display: flex;
   gap: 50px;
   justify-content: center;
+
+  @include mobile {
+    flex-direction: column-reverse;
+    margin-bottom: 50px;
+  }
 
   .left {
     flex: 1;
@@ -58,9 +64,14 @@
       z-index: 1;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       color: white;
       gap: 50px;
       padding: 20px 0px;
+
+      @include mobile {
+        flex-direction: column;
+      }
 
       &::before {
         content: "";
@@ -75,6 +86,13 @@
 
 
       .bottomLeft {
+        @include mobile {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+
         .button {
           background-color: $second-color;
           border: none;
@@ -88,6 +106,8 @@
       }
 
       .bottomRight {
+        font-size: 16px;
+
         .articles {
           display: flex;
           flex-direction: column;
@@ -119,6 +139,10 @@
       left: 0;
       background-color: #DFD1C1;
       z-index: -1;
+
+      @include mobile {
+        left: -9999px;
+      }
     }
 
     .rohanImage {
@@ -126,6 +150,10 @@
       height: 650px;
       margin-left: 50px;
       object-fit: contain;
+
+      @include mobile {
+        margin-left: 0px;
+      }
     }
   }
 }

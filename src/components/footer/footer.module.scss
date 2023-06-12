@@ -1,3 +1,5 @@
+@import "../../styles/mixins/responsive.scss";
+
 .footer {
   display: flex;
   align-items: center;
@@ -5,8 +7,17 @@
   border-top: 1px solid #bbb;
   justify-content: space-between;
 
+  @include mobile {
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .footer_text {
     font-weight: bold;
+
+    @include mobile {
+      font-size: 16px;
+    }
   }
 
   .social_links {
@@ -14,6 +25,10 @@
     align-items: center;
     justify-content: flex-end;
     gap: 20px;
+
+    @include mobile {
+      gap: 30px;
+    }
 
     .social_link {
       .img {

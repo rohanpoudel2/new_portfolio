@@ -1,35 +1,27 @@
 import styles from "./page.module.scss";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
-const Contact = () => {
+async function getData() {
+  const res = await fetch(`${process.env.SITE_URL}/api/page/contact`);
+
+  if (!res.ok) {
+    throw new Error("Failed fetching Contact Data");
+  }
+
+  return res.json();
+}
+
+const Contact = async () => {
+
+  const data = await getData();
+
   return (
     <div className={styles.contact}>
       <div className={styles.contactBox}>
         <h1 className={styles.title}>
-          Whisper your thoughts, I'm all ears 👂
+          {data[0]?.acf.title}
         </h1>
-        <form className={styles.form}>
-          <div className={styles.formElement}>
-            <label>
-              Your name
-            </label>
-            <input type="text" placeholder="Enter your name" required className={styles.input} />
-          </div>
-          <div className={styles.formElement}>
-            <label>
-              Your email
-            </label>
-            <input type="email" placeholder="Enter your email" required className={styles.input} />
-          </div>
-          <div className={styles.formElement}>
-            <label>
-              Message
-            </label>
-            <textarea name="message" cols="30" rows="10" placeholder="Enter your message" className={styles.textarea} />
-          </div>
-          <button className={styles.button}>
-            Send ↗
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </div>
   )

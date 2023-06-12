@@ -1,19 +1,21 @@
 import Image from "next/image";
 import styles from "./article.module.scss";
-import ArticleImage from "@/../public/images/article.jpeg"
 import Link from "next/link";
 
-const Article = () => {
+const Article = ({ data }) => {
+  console.log(data)
   return (
-    <Link href="/articles/helo">
+    <Link href={`/articles/${data?.id}`}>
       <div className={styles.article}>
         <Image
-          src={ArticleImage}
+          src={data?.acf.article_image.sizes.medium_large}
+          width={762}
+          height={512}
           alt="ArticleImage"
           className={styles.image}
         />
         <h2 className={styles.title}>
-          Drinking Coffee made me a better developer.
+          {data?.title.rendered}
         </h2>
       </div>
     </Link>
