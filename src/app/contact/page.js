@@ -1,14 +1,15 @@
+import { GetPage } from "@/utils/page";
 import styles from "./page.module.scss";
 import ContactForm from "@/components/ContactForm/ContactForm";
 
 async function getData() {
-  const res = await fetch(`${process.env.SITE_URL}/api/page/contact`);
+  const res = await GetPage("contact");
 
-  if (!res.ok) {
+  if (!res) {
     throw new Error("Failed fetching Contact Data");
   }
 
-  return res.json();
+  return JSON.parse(res);
 }
 
 export const metadata = {
