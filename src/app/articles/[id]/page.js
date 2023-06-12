@@ -2,21 +2,28 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { notFound } from "next/navigation";
+import { GetElement } from "@/utils/element";
 
 async function getData(id) {
-  const res = await fetch(`${process.env.SITE_URL}/api/articles/${id}`, { next: { revalidate: 10 } });
+  const res = await GetElement(id);
 
-  if (!res.ok) {
+  if (JSON.parse(res).code) {
     return notFound();
   }
 
-  return res.json();
+  return JSON.parse(res);
 }
 
 export async function generateMetadata({ params }) {
   const id = params.id;
 
-  const res = await fetch(`${process.env.SITE_URL}/api/articles/${id}`, { next: { revalidate: 10 } }).then((res) => res.json());
+  let res = await GetElement(id);
+
+  res = JSON.parse(res);
+
+  if (res.code) {
+    return notFound();
+  }
 
   const pattern = /<p>(.*?)<\/p>/;
 

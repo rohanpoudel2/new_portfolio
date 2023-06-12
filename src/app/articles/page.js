@@ -1,14 +1,15 @@
 import styles from "./page.module.scss";
 import Article from "@/components/article/Article";
+import { GetProjects } from "@/utils/elements";
 
 async function getArticles() {
-  const res = await fetch(`${process.env.SITE_URL}/api/articles`, { next: { revalidate: 10 } });
+  const res = await GetProjects("posts");
 
-  if (!res.ok) {
-    throw new Error("Error fetching Articles");
+  if (!res) {
+    throw new Error("Failed to fetch Projects Page Data");
   }
 
-  return res.json();
+  return JSON.parse(res);
 }
 
 export const metadata = {

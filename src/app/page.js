@@ -2,13 +2,14 @@ import styles from "./page.module.scss"
 import Newsletter from "@/components/newsletter/Newsletter"
 import Link from "next/link"
 import HomeImage from "@/components/homeImage/HomeImage";
+import { GetPage } from "@/utils/page";
 
 async function getData() {
-  const res = await fetch(`${process.env.SITE_URL}/api/page/home`, { next: { revalidate: 10 } });
-  if (!res.ok) {
+  const res = await GetPage("home");
+  if (!res) {
     throw new Error("Failed to fetch home data");
   }
-  return res.json();
+  return JSON.parse(res);
 }
 
 export const metadata = {
@@ -22,7 +23,6 @@ export const metadata = {
 const Home = async () => {
 
   const data = await getData();
-
   return (
     <>
       <div className={styles.Home}>

@@ -1,15 +1,16 @@
 import Image from "next/image";
 import styles from "./footer.module.scss";
 import Link from "next/link";
+import { GetProjects } from "@/utils/elements";
 
 async function getData() {
-  const res = await fetch(`${process.env.SITE_URL}/api/footer`);
+  const res = await GetProjects("footer");
 
-  if (!res.ok) {
+  if (!res) {
     throw new Error("Failed to fetch footer data");
   }
 
-  return res.json();
+  return JSON.parse(res);
 }
 
 const Footer = async () => {

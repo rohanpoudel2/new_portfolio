@@ -1,26 +1,25 @@
-import Image from "next/image";
 import styles from "./page.module.scss";
 import Project from "@/components/project/Project";
 import ProjectsHero from "@/components/projectsHero/ProjectsHero";
+import { GetProjects } from "@/utils/elements";
+import { GetPage } from "@/utils/page";
 
 async function getPageData() {
-  const res = await fetch(`${process.env.SITE_URL}/api/page/projects`);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch Projects Page Data");
+  const res = await GetPage("projects");
+  if (!res) {
+    throw new Error("Failed to fetch home data");
   }
-
-  return res.json();
+  return JSON.parse(res);
 }
 
 async function getProjectsData() {
-  const res = await fetch(`${process.env.SITE_URL}/api/projects`, { next: { revalidate: 10 } });
+  const res = await GetProjects("project");
 
-  if (!res.ok) {
+  if (!res) {
     throw new Error("Failed to fetch Projects Page Data");
   }
 
-  return res.json();
+  return JSON.parse(res);
 }
 
 export const metadata = {
