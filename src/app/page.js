@@ -1,7 +1,7 @@
-import Image from "next/image"
 import styles from "./page.module.scss"
 import Newsletter from "@/components/newsletter/Newsletter"
 import Link from "next/link"
+import HomeImage from "@/components/homeImage/HomeImage";
 
 async function getData() {
   const res = await fetch(`${process.env.SITE_URL}/api/page/home`, { next: { revalidate: 10 } });
@@ -72,13 +72,7 @@ const Home = async () => {
           </div>
         </div>
         <div className={styles.right}>
-          <Image
-            src={data[0]?.acf.rohan_image.url}
-            alt={data[0]?.acf.rohan_image.alt}
-            width={1000}
-            height={1000}
-            className={styles.rohanImage}
-          />
+          <HomeImage src={data[0]?.acf.rohan_image.url} alt={data[0]?.acf.rohan_image.alt} />
           <Newsletter />
         </div>
       </div>

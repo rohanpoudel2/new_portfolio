@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import Project from "@/components/project/Project";
+import ProjectsHero from "@/components/projectsHero/ProjectsHero";
 
 async function getPageData() {
   const res = await fetch(`${process.env.SITE_URL}/api/page/projects`);
@@ -45,13 +46,7 @@ const Projects = async () => {
     <div className={styles.project}>
       <h1 style={{ display: "none" }}>Rohan Poudel Projects</h1>
       <div className={styles.hero}>
-        <Image
-          src={data[0]?.acf.hero_image}
-          alt="Hero Image"
-          width={1920}
-          height={1080}
-          className={styles.image}
-        />
+        <ProjectsHero src={data[0]?.acf.hero_image} />
         <div className={styles.projectNumberBox}>
           <span>
             Projects
