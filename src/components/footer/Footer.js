@@ -23,8 +23,8 @@ const Footer = async () => {
       </p>
       <div className={styles.social_links}>
         {
-          data[0]?.acf.social_links.map((data) => (
-            <Link href={data.social_link} target="_blank">
+          data[0]?.acf.social_links.map((data, index) => (
+            <Link href={data.social_link} target="_blank" key={index}>
               <div className={styles.social_link}>
                 <Image
                   src={data.social_image}
