@@ -32,6 +32,11 @@
         font-size: 16px;
         line-height: 25px;
         text-align: justify;
+
+        a {
+          color: $second-color;
+          text-decoration: underline;
+        }
       }
 
       .buttons {
