@@ -10,6 +10,7 @@
   @include mobile {
     flex-direction: column;
     gap: 20px;
+    height: 80px;
   }
 
   .footer_text {

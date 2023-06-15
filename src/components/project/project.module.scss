@@ -3,6 +3,7 @@
 .project {
   display: flex;
   gap: 50px;
+  width: 100%;
 
   @include mobile {
     flex-direction: column;
@@ -59,11 +60,14 @@
     .technologies {
       display: flex;
       align-items: center;
-      gap: 50px;
+      column-gap: 50px;
+      row-gap: 20px;
       font-size: 12px;
       border-top: 1px solid #bbb;
       padding-top: 10px;
       font-weight: bold;
+      width: 100%;
+      flex-wrap: wrap;
     }
   }
 
@@ -79,6 +83,10 @@
       object-fit: cover;
       object-position: top;
       border-radius: 5px;
+
+      @include mobile {
+        height: 50%;
+      }
     }
 
     .link {
