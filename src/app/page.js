@@ -13,7 +13,7 @@ async function getData() {
 }
 
 export const metadata = {
-  title: "Rohan Poudel - 😎",
+  title: "Rohan Poudel - Home ",
   description: "Personal Portfolio website of Rohan Poudel. Designed and Developed by yours truly",
   alternates: {
     canonical: '/',
