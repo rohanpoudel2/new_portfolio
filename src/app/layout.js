@@ -2,6 +2,7 @@ import Navbar from '@/components/navbar/Navbar'
 import './globals.scss'
 import { Poppins } from 'next/font/google'
 import Footer from '@/components/footer/Footer'
+import Script from 'next/script'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -36,6 +37,18 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
         </div>
+        <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`} />
+
+        <Script strategy="lazyOnload">
+          {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${process.env.GOOGLE_ANALYTICS}', {
+        page_path: window.location.pathname,
+        });
+    `}
+        </Script>
       </body>
     </html >
   )
