@@ -31,24 +31,24 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="./icon.png" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </head>
+      <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`} />
+
+      <Script strategy="lazyOnload">
+        {`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${process.env.GOOGLE_ANALYTICS}', {
+page_path: window.location.pathname,
+});
+`}
+      </Script>
       <body className={poppins.className} suppressHydrationWarning={true}>
         <div className="container">
           <Navbar />
           {children}
           <Footer />
         </div>
-        <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICS}`} />
-
-        <Script strategy="lazyOnload">
-          {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${process.env.GOOGLE_ANALYTICS}', {
-        page_path: window.location.pathname,
-        });
-    `}
-        </Script>
       </body>
     </html >
   )

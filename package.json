@@ -1,7 +1,7 @@
 {
   "name": "rohan_build",
   "version": "0.1.0",
-  "homepage": "https://rohanpoudel.com.np/",
+  "homepage": "https://www.rohanpoudel.com.np/",
   "private": true,
   "scripts": {
     "dev": "next dev",
