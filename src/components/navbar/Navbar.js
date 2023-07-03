@@ -44,7 +44,7 @@ const Navbar = () => {
         </Link>
       </ul>
       <div className={styles.chat}>
-        <Link href={"https://wa.link/ux1sb3"} target="_blank">
+        <Link href={"https://wa.link/106h0j"} target="_blank">
           <button className={styles.button}>
             Let&apos;s chat
           </button>
@@ -80,7 +80,7 @@ const Navbar = () => {
           </Link>
         </ul>
         <div className={styles.chat}>
-          <Link href={"https://wa.link/ux1sb3"} target="_blank">
+          <Link href={"https://wa.link/106h0j"} target="_blank">
             <button className={styles.button}>
               Let&apos;s chat
             </button>

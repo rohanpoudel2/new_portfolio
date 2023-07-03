@@ -15,8 +15,16 @@ async function getData() {
 export const metadata = {
   title: "Rohan Poudel - Home ",
   description: "Personal Portfolio website of Rohan Poudel. Designed and Developed by yours truly",
+  keywords: ['Rohan Poudel', 'Rohan Poudel from Nepal'],
+  authors: [{ name: "Rohan Poudel" }],
+  colorScheme: "light",
+  creator: "Rohan Poudel",
   alternates: {
     canonical: '/',
+  },
+  openGraph: {
+    title: "Rohan Poudel - Home",
+    siteName: "Rohan Poudel - Personal Portfolio",
   }
 }
 

@@ -38,6 +38,8 @@ export async function generateMetadata({ params }) {
     return {
       title: res?.title.rendered,
       description: extractedText,
+      authors: ["Rohan Poudel"],
+      publishedTime: res?.modified_gmt,
       alternates: {
         canonical: `/articles/${res?.id}`
       },
@@ -45,8 +47,9 @@ export async function generateMetadata({ params }) {
         title: res?.title.rendered,
         description: extractedText,
         url: `${process.env.SITE_URL}/articles`,
-        type: "website",
-        images: [res?.acf.article_image.sizes.medium_large]
+        type: "article",
+        images: [res?.acf.article_image.sizes.medium_large],
+        publishedTime: res?.modified_gmt,
       }
     }
 
