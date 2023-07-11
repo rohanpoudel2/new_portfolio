@@ -46,10 +46,11 @@ export async function generateMetadata({ params }) {
       openGraph: {
         title: res?.title.rendered,
         description: extractedText,
-        url: `${process.env.SITE_URL}/articles`,
+        url: `${process.env.SITE_URL}/articles/${res?.id}`,
         type: "article",
         images: [res?.acf.article_image.sizes.medium_large],
-        publishedTime: res?.modified_gmt,
+        modifiedTime: res?.modified_gmt,
+        publishedTime: res?.date_gmt,
       }
     }
 
@@ -84,6 +85,15 @@ const Article = async ({ params }) => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.left}>
+          <div className={styles.short_info}>
+            <span className={styles.published}>
+              Published at: {new Date(data?.date_gmt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              })}
+            </span>
+          </div>
           <div dangerouslySetInnerHTML={{ __html: data?.content.rendered }} className={styles.desc} />
         </div>
         <div className={styles.right}>
