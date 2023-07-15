@@ -3,6 +3,7 @@ import './globals.scss'
 import { Poppins } from 'next/font/google'
 import Footer from '@/components/footer/Footer'
 import Script from 'next/script'
+import { Analytics } from "@vercel/analytics/react"
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -48,6 +49,7 @@ page_path: window.location.pathname,
         <div className="container">
           <Navbar />
           {children}
+          <Analytics />
           <Footer />
         </div>
       </body>
